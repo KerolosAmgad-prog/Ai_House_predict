@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RealEstate AI | Premium Property Valuation</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="background-blob"></div>
+    <div class="background-blob second"></div>
+
+    <header>
+        <nav>
+            <div class="logo">
+                <i class="fas fa-home-alt"></i>
+                <span>RealEstate<span>AI</span></span>
+            </div>
+            <ul>
+                <li><a href="#predict">Predictor</a></li>
+                <li><a href="#chat">AI Assistant</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero">
+            <h1>Intelligent Property <br>Valuation <span>System</span></h1>
+            <p>Leverage advanced Machine Learning and LLM-powered interpretation to unlock the true value of your real
+                estate.</p>
+            <div class="stats">
+                <div class="stat-item">
+                    <span class="count">79%</span>
+                    <span class="label">Accuracy</span>
+                </div>
+                <div class="stat-item">
+                    <span class="count">24/7</span>
+                    <span class="label">AI Support</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="predict" class="glass-card">
+            <div class="section-header">
+                <h2>Predict Property Value</h2>
+                <p>Fill in the details below to get a price estimation and AI-driven analysis.</p>
+            </div>
+
+            <form id="prediction-form">
+                <div class="input-grid">
+                    <div class="input-group">
+                        <label for="bedrooms">Bedrooms</label>
+                        <input type="number" id="bedrooms" name="bedrooms" placeholder="e.g. 3" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="bathrooms">Bathrooms</label>
+                        <input type="number" step="0.5" id="bathrooms" name="bathrooms" placeholder="e.g. 2.5" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="sqft_living">Living Space (sqft)</label>
+                        <input type="number" id="sqft_living" name="sqft_living" placeholder="e.g. 2000" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="sqft_lot">Lot Size (sqft)</label>
+                        <input type="number" id="sqft_lot" name="sqft_lot" placeholder="e.g. 5000" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="floors">Floors</label>
+                        <input type="number" step="0.5" id="floors" name="floors" placeholder="e.g. 2" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="waterfront">Waterfront (0-1)</label>
+                        <select id="waterfront" name="waterfront">
+                            <option value="0">No</option>
+                            <option value="1">Yes</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="view">View Rating (0-4)</label>
+                        <input type="number" id="view" name="view" min="0" max="4" placeholder="0" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="condition">Condition (1-5)</label>
+                        <input type="number" id="condition" name="condition" min="1" max="5" placeholder="3" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="sqft_above">Space Above (sqft)</label>
+                        <input type="number" id="sqft_above" name="sqft_above" placeholder="e.g. 1500" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="sqft_basement">Basement (sqft)</label>
+                        <input type="number" id="sqft_basement" name="sqft_basement" placeholder="e.g. 500" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="yr_built">Year Built</label>
+                        <input type="number" id="yr_built" name="yr_built" placeholder="e.g. 1995" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="yr_renovated">Year Renovated</label>
+                        <input type="number" id="yr_renovated" name="yr_renovated" placeholder="e.g. 2010 (0 for none)" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="city">City</label>
+                        <select id="city" name="city">
+                            <option value="">Loading...</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="statezip">Zip Code</label>
+                        <select id="statezip" name="statezip">
+                            <option value="">Loading...</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" id="predict-btn">
+                    <span>Generate Valuation</span>
+                    <i class="fas fa-magic"></i>
+                </button>
+            </form>
+
+            <div id="result-container" class="hidden">
+                <hr>
+                <div class="result-highlight">
+                    <div class="price-box">
+                        <span class="label">Estimated Price</span>
+                        <h2 id="result-price">$0,000</h2>
+                    </div>
+                    <div class="category-box">
+                        <span class="label">Property Category</span>
+                        <h3 id="result-category">Standard</h3>
+                    </div>
+                </div>
+                <div class="interpretation-box">
+                    <h4><i class="fas fa-robot"></i> AI Model Interpretation</h4>
+                    <p id="result-interpretation">Analysis loading...</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Chat Bot Widget -->
+    <div id="chat-widget" class="collapsed">
+        <div class="chat-header">
+            <div class="chat-title">
+                <i class="fas fa-comment-dots"></i>
+                <span>EstateAI Assistant</span>
+            </div>
+            <button id="close-chat"><i class="fas fa-chevron-down"></i></button>
+        </div>
+        <div id="chat-messages" class="chat-body">
+            <div class="message bot">
+                Hello! I am your real estate AI consultant. How can I help you with property evaluations today?
+            </div>
+        </div>
+        <div class="chat-footer">
+            <input type="text" id="chat-input" placeholder="Ask about the property model...">
+            <button id="send-chat"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+    <button id="chat-toggle">
+        <i class="fas fa-comments"></i>
+    </button>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
